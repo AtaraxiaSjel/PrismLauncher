@@ -1,0 +1,22 @@
+name: Sync fork
+
+on:
+  schedule:
+    - cron: '0 3 * * 6'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - name: Rebase from upstream
+        uses: imba-tjd/rebase-upstream-action@master
+        with:
+          upstream: PrismLauncher/PrismLauncher
+          branch: develop
+          token: ${{ secrets.TOKEN }}

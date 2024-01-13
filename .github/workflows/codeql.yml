@@ -1,11 +1,11 @@
 name: "CodeQL Code Scanning"
 
-on: [ push, pull_request, workflow_dispatch ]
+on: [ workflow_dispatch ]
 
 jobs:
   CodeQL:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
           languages: cpp, java
 
       - name: Install Dependencies
-        run:  
+        run:
           sudo apt-get -y update
 
           sudo apt-get -y install ninja-build extra-cmake-modules scdoc qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5core5a libqt5network5 libqt5gui5 libqt5networkauth5 libqt5networkauth5-dev
