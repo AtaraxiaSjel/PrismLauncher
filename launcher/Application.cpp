@@ -2043,7 +2043,7 @@ void Application::triggerUpdateCheck()
 {
     if (m_updater) {
         qDebug() << "Checking for updates.";
-        m_updater->setBetaAllowed(false);  // There are no other channels than stable
+        m_updater->setBetaAllowed(true);
         m_updater->checkForUpdates();
     } else {
         qDebug() << "Updater not available.";
