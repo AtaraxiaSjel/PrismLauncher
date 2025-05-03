@@ -1,0 +1,23 @@
+name: Sync fork
+
+on:
+  schedule:
+    - cron: '0 3 * * 6'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+          token: ${{ secrets.TOKEN }}
+
+      - name: Rebase from upstream
+        uses: AtaraxiaSjel/rebase-upstream-action@master
+        with:
+          upstream: PrismLauncher/PrismLauncher
+          branch: develop
+          token: ${{ secrets.TOKEN }}
