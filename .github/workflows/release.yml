@@ -2,8 +2,32 @@ name: Build Application and Make Release
 
 on:
   push:
-    tags:
-      - "*"
+    # tags:
+    #   - "*"
+    branches-ignore:
+      - "renovate/**"
+    paths:
+      # File types
+      - "**.cpp"
+      - "**.h"
+      - "**.java"
+
+      # Directories
+      - "buildconfig/"
+      - "cmake/"
+      - "launcher/"
+      - "libraries/"
+      - "program_info/"
+      - "tests/"
+
+      # Files
+      - "CMakeLists.txt"
+      - "COPYING.md"
+
+      # Workflows
+      - ".github/workflows/build.yml"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
 
 jobs:
   build_release:
@@ -28,8 +52,15 @@ jobs:
         uses: actions/download-artifact@v6
       - name: Grab and store version
         run: |
-          tag_name=$(echo ${{ github.ref }} | grep -oE "[^/]+$")
-          echo "VERSION=$tag_name" >> $GITHUB_ENV
+          created_at=$(date +'%-Y.%-m%d.%-H%M')
+          echo "VERSION=$created_at" >> $GITHUB_ENV
+      - name: Create Tag
+        id: create_tag
+        run: |
+          pushd PrismLauncher-source
+          git tag v${{ env.VERSION }}
+          git push origin v${{ env.VERSION }}
+          popd
       - name: Package artifacts properly
         run: |
           mv ${{ github.workspace }}/PrismLauncher-source PrismLauncher-${{ env.VERSION }}
@@ -84,10 +115,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ github.ref }}
+          tag_name: v${{ env.VERSION }}
           name: Prism Launcher ${{ env.VERSION }}
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
           files: |
             PrismLauncher-Linux-x86_64.AppImage
             PrismLauncher-Linux-x86_64.AppImage.zsync
