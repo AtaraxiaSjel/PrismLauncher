@@ -1,62 +1,62 @@
 name: Flatpak
 
 on:
-  push:
-    branches:
-      - "develop"
-      - "release-*"
-    # We don't do anything with these artifacts on releases. They go to Flathub
-    tags-ignore:
-      - "*"
-    paths:
-      # File types
-      - "**.cpp"
-      - "**.h"
-      - "**.java"
-      - "**.ui"
+  # push:
+  #   branches:
+  #     - "develop"
+  #     - "release-*"
+  #   # We don't do anything with these artifacts on releases. They go to Flathub
+  #   tags-ignore:
+  #     - "*"
+  #   paths:
+  #     # File types
+  #     - "**.cpp"
+  #     - "**.h"
+  #     - "**.java"
+  #     - "**.ui"
 
-      # Build files
-      - "flatpak/**"
+  #     # Build files
+  #     - "flatpak/**"
 
-      # Directories
-      - "buildconfig/**"
-      - "cmake/**"
-      - "launcher/**"
-      - "libraries/**"
-      - "program_info/**"
-      - "tests/**"
+  #     # Directories
+  #     - "buildconfig/**"
+  #     - "cmake/**"
+  #     - "launcher/**"
+  #     - "libraries/**"
+  #     - "program_info/**"
+  #     - "tests/**"
 
-      # Files
-      - "CMakeLists.txt"
-      - "COPYING.md"
+  #     # Files
+  #     - "CMakeLists.txt"
+  #     - "COPYING.md"
 
-      # Workflows
-      - ".github/workflows/flatpak.yml"
-  pull_request:
-    paths:
-      # File types
-      - "**.cpp"
-      - "**.h"
-      - "**.java"
-      - "**.ui"
+  #     # Workflows
+  #     - ".github/workflows/flatpak.yml"
+  # pull_request:
+  #   paths:
+  #     # File types
+  #     - "**.cpp"
+  #     - "**.h"
+  #     - "**.java"
+  #     - "**.ui"
 
-      # Build files
-      - "flatpak/**"
+  #     # Build files
+  #     - "flatpak/**"
 
-      # Directories
-      - "buildconfig/**"
-      - "cmake/**"
-      - "launcher/**"
-      - "libraries/**"
-      - "program_info/**"
-      - "tests/**"
+  #     # Directories
+  #     - "buildconfig/**"
+  #     - "cmake/**"
+  #     - "launcher/**"
+  #     - "libraries/**"
+  #     - "program_info/**"
+  #     - "tests/**"
 
-      # Files
-      - "CMakeLists.txt"
-      - "COPYING.md"
+  #     # Files
+  #     - "CMakeLists.txt"
+  #     - "COPYING.md"
 
-      # Workflows
-      - ".github/workflows/flatpak.yml"
+  #     # Workflows
+  #     - ".github/workflows/flatpak.yml"
   workflow_dispatch:
 
 permissions:
