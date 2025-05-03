@@ -174,9 +174,15 @@ set(Launcher_LOGIN_CALLBACK_URL "https://prismlauncher.org/successful-login" CAC
 set(Launcher_FMLLIBS_BASE_URL "https://files.prismlauncher.org/fmllibs/" CACHE STRING "URL for FML Libraries.")
 
 ######## Set version numbers ########
-set(Launcher_VERSION_MAJOR 10)
-set(Launcher_VERSION_MINOR 0)
-set(Launcher_VERSION_PATCH 2)
+string(TIMESTAMP cur_year "%Y")
+string(TIMESTAMP cur_date "%m%d")
+string(TIMESTAMP cur_time "%H%M")
+math(EXPR cur_year ${cur_year})
+math(EXPR cur_date ${cur_date})
+math(EXPR cur_time ${cur_time})
+set(Launcher_VERSION_MAJOR ${cur_year})
+set(Launcher_VERSION_MINOR ${cur_date})
+set(Launcher_VERSION_PATCH ${cur_time})
 
 set(Launcher_VERSION_NAME "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}.${Launcher_VERSION_PATCH}")
 set(Launcher_VERSION_NAME4 "${Launcher_VERSION_MAJOR}.${Launcher_VERSION_MINOR}.${Launcher_VERSION_PATCH}.0")
@@ -186,7 +192,7 @@ set(Launcher_VERSION_NAME4_COMMA "${Launcher_VERSION_MAJOR},${Launcher_VERSION_M
 set(Launcher_BUILD_PLATFORM "unknown" CACHE STRING "A short string identifying the platform that this build was built for. Only used to display in the about dialog.")
 
 # Github repo URL with releases for updater
-set(Launcher_UPDATER_GITHUB_REPO "https://github.com/PrismLauncher/PrismLauncher" CACHE STRING "Base github URL for the updater.")
+set(Launcher_UPDATER_GITHUB_REPO "https://github.com/AtaraxiaSjel/PrismLauncher" CACHE STRING "Base github URL for the updater.")
 
 # Name to help updater identify valid artifacts
 set(Launcher_BUILD_ARTIFACT "" CACHE STRING "Artifact name to help the updater identify valid artifacts.")
